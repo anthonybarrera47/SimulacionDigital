@@ -1,0 +1,12 @@
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\bin\Debug\HidroElectica.exe.config
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\bin\Debug\HidroElectica.exe
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\bin\Debug\HidroElectica.pdb
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\bin\Debug\Herramientas.dll
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\bin\Debug\Herramientas.pdb
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\obj\Debug\HidroElectica.csprojAssemblyReference.cache
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\obj\Debug\HidroElectica.Form1.resources
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\obj\Debug\HidroElectica.Properties.Resources.resources
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\obj\Debug\HidroElectica.csproj.GenerateResource.cache
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\obj\Debug\HidroElectica.csproj.CopyComplete
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\obj\Debug\HidroElectica.exe
+C:\Users\antho\source\repos\SimulacionDigital\HidroElectica\HidroElectica\obj\Debug\HidroElectica.pdb

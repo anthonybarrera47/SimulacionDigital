@@ -1,0 +1,12 @@
+C:\Users\antho\source\repos\Parqueos\bin\Debug\Parqueos.exe.config
+C:\Users\antho\source\repos\Parqueos\bin\Debug\Parqueos.exe
+C:\Users\antho\source\repos\Parqueos\bin\Debug\Parqueos.pdb
+C:\Users\antho\source\repos\Parqueos\obj\Debug\Parqueos.csprojAssemblyReference.cache
+C:\Users\antho\source\repos\Parqueos\obj\Debug\Parqueos.MainForm.resources
+C:\Users\antho\source\repos\Parqueos\obj\Debug\Parqueos.Properties.Resources.resources
+C:\Users\antho\source\repos\Parqueos\obj\Debug\Parqueos.csproj.GenerateResource.cache
+C:\Users\antho\source\repos\Parqueos\obj\Debug\Parqueos.exe
+C:\Users\antho\source\repos\Parqueos\obj\Debug\Parqueos.pdb
+C:\Users\antho\source\repos\Parqueos\bin\Debug\Herramientas.dll
+C:\Users\antho\source\repos\Parqueos\bin\Debug\Herramientas.pdb
+C:\Users\antho\source\repos\Parqueos\obj\Debug\Parqueos.csproj.CopyComplete

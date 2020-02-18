@@ -1,0 +1,12 @@
+C:\Users\antho\source\repos\SimulacionDigital\bin\Debug\SimulacionDigital.exe.config
+C:\Users\antho\source\repos\SimulacionDigital\bin\Debug\SimulacionDigital.exe
+C:\Users\antho\source\repos\SimulacionDigital\bin\Debug\SimulacionDigital.pdb
+C:\Users\antho\source\repos\SimulacionDigital\bin\Debug\Herramientas.dll
+C:\Users\antho\source\repos\SimulacionDigital\bin\Debug\Herramientas.pdb
+C:\Users\antho\source\repos\SimulacionDigital\obj\Debug\Probabilidad.csprojAssemblyReference.cache
+C:\Users\antho\source\repos\SimulacionDigital\obj\Debug\SimulacionDigital.MainForm.resources
+C:\Users\antho\source\repos\SimulacionDigital\obj\Debug\SimulacionDigital.Properties.Resources.resources
+C:\Users\antho\source\repos\SimulacionDigital\obj\Debug\Probabilidad.csproj.GenerateResource.cache
+C:\Users\antho\source\repos\SimulacionDigital\obj\Debug\Probabilidad.csproj.CopyComplete
+C:\Users\antho\source\repos\SimulacionDigital\obj\Debug\SimulacionDigital.exe
+C:\Users\antho\source\repos\SimulacionDigital\obj\Debug\SimulacionDigital.pdb
