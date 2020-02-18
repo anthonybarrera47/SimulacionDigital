@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ContadorEmbutidos.exe" version="1.0.0.2" publicKeyToken="a9f116d54b14f026" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ContadorEmbutidos" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ContadorEmbutidos.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ContadorEmbutidos.exe" size="174512">
+      <assemblyIdentity name="ContadorEmbutidos" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>9R2DB/S8Y1LA40g+yIdxC1bNehl+kjnXkRTHTU03fLU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Herramientas.dll" size="10752">
+      <assemblyIdentity name="Herramientas" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>WMyLWhR/afLwj7SboTvlx9v7f9Ml3sP9GcZWhzQlFts=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ContadorEmbutidos.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DARKLAP\antho" issuerKeyHash="9e55455423a4c3173bba9249c904442bb7067b2b" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>T3dhLechWzmH3xSbQXycVFf46p/17fU/e+L19chuNLw=</DigestValue></Reference></SignedInfo><SignatureValue>Tx0i1OnbGeIVNCMIMTamxXc0TLN+E0D5ZYSy/olkwpx2dBK0RxOti8zj933P9j+BMF8tbgfoTQWjRsP4cUpyoH9b9QmlQrwtUWkTsEvbiDpIwAGs8LJg2GwVEL4Eaby6r6PYsABHVMUMhBJ+5FHddiEna6W7esWQAuERUkx/wyo=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>s83TJ52ZaoFmKhY0f0MD+os+es2f7Bvo1UCy6kosVpdgVq66L+BOP3wcnBoTRHHQCMSZ5wC8L2OWEwMCtMHD7EGr/dzLgL9zEsVyqP/OJ6Qnwp9z0BsZp6If7kS4NeTiUDOOCn2GBtCs/YGC2oniA6Vl8fWpSqb+J4jM3s/U7D0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="bc346ec8f5f5e27b3ff5edf59feaf857549c7c419b14df87395b21e72d61774f" Description="" Url=""><as:assemblyIdentity name="ContadorEmbutidos.exe" version="1.0.0.2" publicKeyToken="a9f116d54b14f026" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DARKLAP\antho</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>oE8zo7IziZhRk8pqh52MKUPvG0LKvGCtKX4wcwQD8hQ=</DigestValue></Reference></SignedInfo><SignatureValue>ZboVnCWNiYmW3PEiB2eAfogK11Og4r1XthVhJmL2H8jf5QC3F6gqY7ZJrIEWJv48Da05YX1QXEd/4AmN0HLVBHNCb/f9d1hS6/IuGR9opRMSctRVzR2ZevHrOeErceVHqX3xc1pG8su0MsTAtCmse+dpvbV+YYzume/Pym2WKaQ=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>s83TJ52ZaoFmKhY0f0MD+os+es2f7Bvo1UCy6kosVpdgVq66L+BOP3wcnBoTRHHQCMSZ5wC8L2OWEwMCtMHD7EGr/dzLgL9zEsVyqP/OJ6Qnwp9z0BsZp6If7kS4NeTiUDOOCn2GBtCs/YGC2oniA6Vl8fWpSqb+J4jM3s/U7D0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBzTCCATagAwIBAgIQP4LyNoVdZrlClzyWJ2OBfzANBgkqhkiG9w0BAQsFADAlMSMwIQYDVQQDHhoARABBAFIASwBMAEEAUABcAGEAbgB0AGgAbzAeFw0yMDAyMTgyMTM4MTRaFw0yMTAyMTgwMzM4MTRaMCUxIzAhBgNVBAMeGgBEAEEAUgBLAEwAQQBQAFwAYQBuAHQAaABvMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzzdMnnZlqgWYqFjR/QwP6iz56zZ/sG+jVQLLqSixWl2BWrrov4E4/fBycGhNEcdAIxJnnALwvY5YTAwK0wcPsQav93MuAv3MSxXKo/84npCfCn3PQGxmnoh/uRLg15OJQM44KfYYG0Kz9gYLaieIDpWXx9alKpv4niMzez9TsPQIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAKFME/mHCeR0Nww/gZbJQ3rcFoQDQYiY9UhLhcpsUHVwTLcjFRFVnytMgEFSM5FiaWX/iOayysff0dUrzDnpeJma6eIDmeZuiF5FI2OilPnY7MpumHa4rjreDnr8dKX73gB29sDM13PCKF/0qBRRXlhBCh2dxQPX9qFHCvfwjgsj</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

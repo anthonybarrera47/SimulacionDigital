@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidroElectica", "HidroElect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parqueos", "Parqueos\Parqueos.csproj", "{00EEC87B-E539-4F97-9772-16A496ACB824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContadorEmbutidos", "..\ContadorEmbutidos\ContadorEmbutidos.csproj", "{D34057CB-B0D5-44E2-8BFD-698B79DAEBE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContadorEmbutidos", "ContadorEmbutidos\ContadorEmbutidos.csproj", "{D34057CB-B0D5-44E2-8BFD-698B79DAEBE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
