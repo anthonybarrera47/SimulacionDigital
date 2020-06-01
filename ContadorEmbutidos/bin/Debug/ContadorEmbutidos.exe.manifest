@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ContadorEmbutidos.exe" size="174512">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ContadorEmbutidos.exe" size="230320">
       <assemblyIdentity name="ContadorEmbutidos" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9R2DB/S8Y1LA40g+yIdxC1bNehl+kjnXkRTHTU03fLU=</dsig:DigestValue>
+        <dsig:DigestValue>aSZHsfouV1tJ6MyXKNfwWFu0EoQ+krnixFUt3DyBYRo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

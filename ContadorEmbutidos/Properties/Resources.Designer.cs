@@ -63,6 +63,16 @@ namespace ContadorEmbutidos.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ajustes {
+            get {
+                object obj = ResourceManager.GetObject("ajustes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap escaner {
             get {
                 object obj = ResourceManager.GetObject("escaner", resourceCulture);
@@ -96,6 +106,56 @@ namespace ContadorEmbutidos.Properties {
         internal static System.Drawing.Bitmap MesaSinFondo {
             get {
                 object obj = ResourceManager.GetObject("MesaSinFondo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poder {
+            get {
+                object obj = ResourceManager.GetObject("poder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poder_1_ {
+            get {
+                object obj = ResourceManager.GetObject("poder(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap potencia {
+            get {
+                object obj = ResourceManager.GetObject("potencia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap potencia_1_ {
+            get {
+                object obj = ResourceManager.GetObject("potencia(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap potencia_2_ {
+            get {
+                object obj = ResourceManager.GetObject("potencia(2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

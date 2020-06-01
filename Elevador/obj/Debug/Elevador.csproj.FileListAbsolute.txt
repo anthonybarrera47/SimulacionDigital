@@ -1,0 +1,12 @@
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\bin\Debug\Elevador.exe.config
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\bin\Debug\Elevador.exe
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\bin\Debug\Elevador.pdb
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\obj\Debug\Elevador.csprojAssemblyReference.cache
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\obj\Debug\Elevador.MainForm.resources
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\obj\Debug\Elevador.Properties.Resources.resources
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\obj\Debug\Elevador.csproj.GenerateResource.cache
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\obj\Debug\Elevador.exe
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\obj\Debug\Elevador.pdb
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\bin\Debug\Herramientas.dll
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\bin\Debug\Herramientas.pdb
+C:\Users\antho\source\repos\SimulacionDigital\Elevador\obj\Debug\Elevador.csproj.CopyComplete

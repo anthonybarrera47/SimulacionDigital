@@ -1,26 +1,26 @@
 ﻿using Extensores;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
+using static ContadorEmbutidos.Enums;
 
 namespace ContadorEmbutidos
 {
     public partial class MainForm : Form
     {
         int IntervaloTiempo = 10;
+        int CorreaVelocidadValue = 1;
+        int AprensadoraVelocidadValue = 1;
         private bool activar = false;
         private int dias, hora, minuto, segundo, centesima;
         int X = 0;
+        int Y = 0;
         int incremento = 1;
-        string aumento = "Aumento X ";
+        int incrementoAprensadora = 1;
+        string Aumento = "Aumento X ";
         Thread t;
         Point pt1;
         Point pt2;
@@ -29,11 +29,11 @@ namespace ContadorEmbutidos
         public MainForm()
         {
             InitializeComponent();
-            System.Drawing.Image img = pictureBox2.Image;
-            img.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            pictureBox2.Image = img;
             OnTimer.Enabled = false;
+            InTimer.Enabled = false;
             t = new Thread(Empezar);
+            VelocidadProduccionTrackBar_Scroll(null, null);
+            VelocidadAprensadoratrackBar_Scroll(null, null);
         }
         private void CalculosRecomendaciones()
         {
@@ -59,9 +59,9 @@ namespace ContadorEmbutidos
 
             Dictionary<Width, decimal> Diccionario = new Dictionary<Width, decimal>
             {
-                { ContadorEmbutidos.Width.Pequeno, PorcentajePequeno },
-                { ContadorEmbutidos.Width.Mediano, PorcentajeMediano },
-                { ContadorEmbutidos.Width.Grande, PorcentajeGrande }
+                { Enums.Width.Pequeno, PorcentajePequeno },
+                { Enums.Width.Mediano, PorcentajeMediano },
+                { Enums.Width.Grande, PorcentajeGrande }
             };
 
             var max = Diccionario.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
@@ -69,52 +69,66 @@ namespace ContadorEmbutidos
             RecomendacionesTextBox.AppendText($"{System.Environment.NewLine}{System.Environment.NewLine}El Embutido mas vendido fue el {max.ToString()}");
             MessageBox.Show($"Embutido recomendado a comprar: {max.ToString()}", "Recomendacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public Longitud LongitudEmbutidoRandom()
-        {
-            var guid = Guid.NewGuid();
-            var justNumbers = new string(guid.ToString().Where(char.IsDigit).ToArray());
-            var seed = int.Parse(justNumbers.Substring(0, 4));
-
-            Random random = new Random(seed);
-            int a = random.Next(1, 4);
-            return (Longitud)a;
-        }
         public void Finalizar()
         {
             if (t.IsAlive)
             {
                 t.Abort();
                 OnTimer.Enabled = false;
+                InTimer.Enabled = false;
                 t = new Thread(Empezar);
                 Lista = new List<Embutidos>();
                 PequenoLabel.Text = "";
                 MedianosLabel.Text = "";
                 GrandeLabel.Text = "";
                 TotalLabel.Text = "";
+                ApresadoraNivelLabel.Text = "";
+                VelocidadCorreaLabel.Text = "";
                 X = 0;
+                Y = 0;
+                VelocidadProduccionTrackBar_Scroll(null, null);
+                VelocidadAprensadoratrackBar_Scroll(null, null);
             }
         }
-        public void CambiarEstadoBotones(bool Estado)
+        public void CambiarEstadoControles(bool Estado)
         {
             EmpezarSimulacionButton.Enabled = Estado;
-            DetenerSimulacionButton.Enabled = !Estado;
-            AumentarButton.Enabled = !Estado;
+
             SimulacionInstantanea.Enabled = Estado;
             CantidadDiasTextBox.ReadOnly = !Estado;
+            VelocidadProduccionTrackBar.Enabled = !Estado;
+            VelocidadAprensadoratrackBar.Enabled = !Estado;
+            DetenerSimulacionButton.Enabled = !Estado;
+            AjustarNivelesButton.Enabled = !Estado;
         }
-        public void AsignarEmbutido()
+        public void AsignarEmbutido(bool EvualuarExpresion = false, bool MarcarNoServible = false)
         {
             embutido = new Embutidos
             {
-                Longitud = LongitudEmbutidoRandom()
+                Longitud = LongitudEmbutidoRandom(),
+                LongitudAprensadora = LongitudAprensadoraRandom(),
+                Tipo = Tipo.Servible
             };
-            embutido.AsignarWidth();
+            embutido.AsignarWidthEmbutido();
+            embutido.AsignarWidthAprensadora();
+
+            if (EvualuarExpresion)
+            {
+                if ((float)embutido.LongitudAprensadora != (float)embutido.Longitud)
+                    embutido.Tipo = Tipo.NoServible;
+            }
+            if (MarcarNoServible)
+                embutido.Tipo = Tipo.NoServible;
+
             Lista.Add(embutido);
-            LogTextBox.AppendText($"{System.Environment.NewLine}Se agrego un embutido {embutido.Longitud.ToString()} ");
+            string Servible = embutido.Tipo == Tipo.NoServible ? "Que no es servible" : "";
+            LogTextBox.AppendText($"{System.Environment.NewLine}Se agrego un embutido {embutido.Longitud.ToString()} {Servible}");
+            LogTextBox.AppendText($"{System.Environment.NewLine}La Aprensadora es {embutido.LongitudAprensadora.ToString()}");
         }
         void Ejecutar()
         {
             OnTimer.Enabled = true;
+            InTimer.Enabled = true;
             t.Start();
         }
         public void Empezar()
@@ -177,48 +191,49 @@ namespace ContadorEmbutidos
             LogTextBox.Text = string.Empty;
             int dias = CantidadDiasTextBox.Text.ToInt();
             int Segundos = dias * 86400;
-
             while (Segundos > 0)
             {
-                embutido = new Embutidos
-                {
-                    Longitud = LongitudEmbutidoRandom()
-                };
-                embutido.AsignarTiempo();
+
+                AsignarEmbutido(true);
                 Segundos -= (int)embutido.LongitudTiempo;
-                Lista.Add(embutido);
             }
 
             decimal TotalEmbutidos = Lista.Count().ToDecimal();
-            decimal Pequenios = Lista.Count(x => x.LongitudTiempo == ContadorEmbutidos.LongitudTiempo.Pequeno).ToDecimal();
-            decimal medianos = Lista.Count(x => x.LongitudTiempo == ContadorEmbutidos.LongitudTiempo.Mediano).ToDecimal();
-            decimal Grandes = Lista.Count(x => x.LongitudTiempo == ContadorEmbutidos.LongitudTiempo.Grande).ToDecimal();
+            decimal Pequenios = Lista.Count(x => x.LongitudTiempo == Enums.LongitudTiempo.Pequeno && x.Tipo == Tipo.Servible).ToDecimal();
+            decimal medianos = Lista.Count(x => x.LongitudTiempo == Enums.LongitudTiempo.Mediano && x.Tipo == Tipo.Servible).ToDecimal();
+            decimal Grandes = Lista.Count(x => x.LongitudTiempo == Enums.LongitudTiempo.Grande && x.Tipo == Tipo.Servible).ToDecimal();
+            decimal NoServible = Lista.Count(x => x.Tipo == Tipo.NoServible).ToDecimal();
 
             decimal PorcentajePequeno = 0;
             decimal PorcentajeMediano = 0;
             decimal PorcentajeGrande = 0;
+            decimal PorcentajeNoServible = 0;
 
             if (TotalEmbutidos > 0)
             {
                 PorcentajePequeno = ((Pequenios / TotalEmbutidos) * 100).ToRound();
                 PorcentajeMediano = ((medianos / TotalEmbutidos) * 100).ToRound();
                 PorcentajeGrande = ((Grandes / TotalEmbutidos) * 100).ToRound();
+                PorcentajeNoServible = ((NoServible / TotalEmbutidos) * 100).ToRound();
             }
 
             RecomendacionesTextBox.AppendText($"{System.Environment.NewLine}El porcentaje de venta del embutido Pequeño es {PorcentajePequeno}%");
             RecomendacionesTextBox.AppendText($"{System.Environment.NewLine}El porcentaje de venta del embutido Mediano es {PorcentajeMediano}%");
             RecomendacionesTextBox.AppendText($"{System.Environment.NewLine}El porcentaje de venta del embutido Grande es {PorcentajeGrande}%");
+            RecomendacionesTextBox.AppendText($"{System.Environment.NewLine}El porcentaje de venta del embutido NoServible es {PorcentajeNoServible}%");
 
-            PequenoLabel.Text = Lista.Count(x => x.LongitudTiempo == ContadorEmbutidos.LongitudTiempo.Pequeno).ToString();
-            MedianosLabel.Text = Lista.Count(x => x.LongitudTiempo == ContadorEmbutidos.LongitudTiempo.Mediano).ToString();
-            GrandeLabel.Text = Lista.Count(x => x.LongitudTiempo == ContadorEmbutidos.LongitudTiempo.Grande).ToString();
+            PequenoLabel.Text = Lista.Count(x => x.LongitudTiempo == Enums.LongitudTiempo.Pequeno).ToString();
+            MedianosLabel.Text = Lista.Count(x => x.LongitudTiempo == Enums.LongitudTiempo.Mediano).ToString();
+            GrandeLabel.Text = Lista.Count(x => x.LongitudTiempo == Enums.LongitudTiempo.Grande).ToString();
+            EmbutidosDanadosLabel.Text = Lista.Count(x => x.LongitudTiempo == Enums.LongitudTiempo.Grande).ToString();
+
             TotalLabel.Text = Lista.Count().ToString();
             DiasLabel.Text = CantidadDiasTextBox.Text;
             Dictionary<LongitudTiempo, decimal> Diccionario = new Dictionary<LongitudTiempo, decimal>
             {
-                { ContadorEmbutidos.LongitudTiempo.Pequeno, PorcentajePequeno },
-                { ContadorEmbutidos.LongitudTiempo.Mediano, PorcentajeMediano },
-                { ContadorEmbutidos.LongitudTiempo.Grande, PorcentajeGrande }
+                { Enums.LongitudTiempo.Pequeno, PorcentajePequeno },
+                { Enums.LongitudTiempo.Mediano, PorcentajeMediano },
+                { Enums.LongitudTiempo.Grande, PorcentajeGrande }
             };
 
             var max = Diccionario.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
@@ -272,8 +287,11 @@ namespace ContadorEmbutidos
         {
             pt1 = new Point(360, 100);
             pt2 = new Point(360, 310);
-            Pen myPen = new Pen(Color.Red, 5);
-            e.Graphics.DrawLine(myPen, pt1, pt2);
+            //Pen myPen = new Pen(Color.Red, 5);
+            //e.Graphics.DrawLine(myPen, pt1, pt2);
+            Size size = new Size(pt2);
+            Rectangle rectangle = new Rectangle(pt1, size);
+            e.Graphics.FillRectangle(Brushes.OrangeRed, X, 190, (float)embutido.Width, 100);
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -284,23 +302,107 @@ namespace ContadorEmbutidos
             X += 10;
             Invalidate();
         }
-        private void AumentarButton_Click(object sender, EventArgs e)
+        private void VelocidadProduccionTrackBar_Scroll(object sender, EventArgs e)
         {
-            LogTextBox.AppendText($"{System.Environment.NewLine}Se incremento la velocidad a {incremento.ToString()}");
-            AumentarButton.Text = aumento + incremento.ToString();
-            if (OnTimer.Interval <= 10)
+            string Mensaje = string.Empty;
+
+            if (VelocidadProduccionTrackBar.Value == 1)
             {
+                Mensaje = "La velocidad es";
+                IntervaloTiempo = 10;
+                incremento = VelocidadProduccionTrackBar.Value;
+                OnTimer.Interval = 100;
+            }
+            else if (VelocidadProduccionTrackBar.Value == 10)
+            {
+                Mensaje = "La velocidad es";
                 IntervaloTiempo = 0;
                 OnTimer.Interval = 1;
                 incremento = 10;
             }
-            else
+            else if (VelocidadProduccionTrackBar.Value > CorreaVelocidadValue)
             {
+                Mensaje = "Se Aumento la velocidad a ";
                 IntervaloTiempo -= 1;
                 OnTimer.Interval -= 10;
-                incremento++;
+                incremento = VelocidadProduccionTrackBar.Value;
             }
+            else if (CorreaVelocidadValue > VelocidadProduccionTrackBar.Value)
+            {
+                Mensaje = "Se Disminuyo la velocidad a";
+                IntervaloTiempo += 1;
+                OnTimer.Interval += 10;
+                incremento = VelocidadProduccionTrackBar.Value;
+            }
+            LogTextBox.AppendText($"{System.Environment.NewLine}{Mensaje} {incremento.ToString()}");
+            VelocidadCorreaLabel.Text = incremento.ToString();
         }
+        private void VelocidadProduccionTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            CorreaVelocidadValue = VelocidadProduccionTrackBar.Value;
+        }
+
+        private void VelocidadAprensadoratrackBar_Scroll(object sender, EventArgs e)
+        {
+            string Mensaje = string.Empty;
+
+            if (VelocidadAprensadoratrackBar.Value == 1)
+            {
+                Mensaje = "La velocidad de la aprensadora es";
+                incrementoAprensadora = VelocidadAprensadoratrackBar.Value;
+                InTimer.Interval = 100;
+            }
+            else if (VelocidadAprensadoratrackBar.Value == 10)
+            {
+                Mensaje = "La velocidad de la aprensadora es";
+                InTimer.Interval = 1;
+                incrementoAprensadora = 10;
+            }
+            else if (VelocidadAprensadoratrackBar.Value > AprensadoraVelocidadValue)
+            {
+                Mensaje = "Se Aumento la velocidad de la aprensadora a ";
+                InTimer.Interval -= 10;
+                incrementoAprensadora = VelocidadAprensadoratrackBar.Value;
+            }
+            else if (AprensadoraVelocidadValue > VelocidadAprensadoratrackBar.Value)
+            {
+                Mensaje = "Se Disminuyo la velocidad de la aprensadora a";
+                InTimer.Interval += 10;
+                incrementoAprensadora = VelocidadAprensadoratrackBar.Value;
+            }
+            if (X != Y && t.IsAlive)
+            {
+                Lista.FindLast(x => true).Tipo = Tipo.NoServible;
+            }
+
+            LogTextBox.AppendText($"{System.Environment.NewLine}{Mensaje} {incrementoAprensadora.ToString()}");
+            ApresadoraNivelLabel.Text = incrementoAprensadora.ToString();
+        }
+
+        private void VelocidadAprensadoratrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            AprensadoraVelocidadValue = VelocidadAprensadoratrackBar.Value;
+        }
+
+        private void InTimer_Tick(object sender, EventArgs e)
+        {
+            Y += 10;
+            if (Y == 360)
+                Y = 0;
+
+            Invalidate();
+        }
+
+        private void AjustarNivelesButton_Click(object sender, EventArgs e)
+        {
+            X = 0;
+            Y = 0;
+            VelocidadAprensadoratrackBar.Value = 1;
+            VelocidadProduccionTrackBar.Value = 1;
+            VelocidadProduccionTrackBar_Scroll(null, null);
+            VelocidadAprensadoratrackBar_Scroll(null, null);
+        }
+
         private void EmpezarSimulacionButton_Click(object sender, EventArgs e)
         {
             if (CantidadDiasTextBox.Text.ToInt() > 0)
@@ -309,27 +411,27 @@ namespace ContadorEmbutidos
                 LogTextBox.Text = string.Empty;
                 RecomendacionesTextBox.Text = string.Empty;
                 LogTextBox.AppendText($"{System.Environment.NewLine}Se inicio la simulación");
-                CambiarEstadoBotones(false);
+                CambiarEstadoControles(false);
                 Ejecutar();
                 PequenoLabel.Text = "";
                 MedianosLabel.Text = "";
                 GrandeLabel.Text = "";
                 TotalLabel.Text = "";
-                AumentarButton.Text = aumento + incremento.ToString();
-
+                EmbutidosDanadosLabel.Text = "";
             }
             else
                 MessageBox.Show("Debe especificar un numero de dias");
-
         }
         private void DetenerSimulacionButton_Click(object sender, EventArgs e)
         {
-            AumentarButton.Text = aumento.ToString();
             IntervaloTiempo = 10;
             OnTimer.Interval = 100;
+            InTimer.Interval = 100;
             incremento = 1;
+            VelocidadProduccionTrackBar.Value = 1;
+            VelocidadAprensadoratrackBar.Value = 1;
             CalculosRecomendaciones();
-            CambiarEstadoBotones(true);
+            CambiarEstadoControles(true);
             CalcularGanancia();
             Finalizar();
             LogTextBox.AppendText($"{System.Environment.NewLine}Se finalizo la simulación");
@@ -348,86 +450,32 @@ namespace ContadorEmbutidos
                 if (t.IsAlive)
                 {
                     if (Lista.Count == 0)
-                        AsignarEmbutido();
+                        AsignarEmbutido(true);
 
-                    e.Graphics.FillRectangle(Brushes.OrangeRed, X, 190, (float)embutido.Width, 100);
-                    DibujarLineaRoja(e);
+                    e.Graphics.FillRectangle(Brushes.OrangeRed, X, 360, (float)embutido.Width, 100);
+                    pt1 = new Point(360, 350);
+                    pt2 = new Point(150, 150);
+                    //Pen myPen = new Pen(Color.Red, 5);
+                    //e.Graphics.DrawLine(myPen, pt1, pt2);
+                    Size size = new Size(pt2);
+                    Rectangle rectangle = new Rectangle(pt1, size);
+                    e.Graphics.FillRectangle(Brushes.OrangeRed, 360, Y, (float)embutido.WidthAprensadora, 100);
+                    //DibujarLineaRoja(e);
 
                     if (X == 360)
                     {
                         X = 0;
-                        PequenoLabel.Text = Lista.Count(x => x.Width == ContadorEmbutidos.Width.Pequeno).ToString();
-                        MedianosLabel.Text = Lista.Count(x => x.Width == ContadorEmbutidos.Width.Mediano).ToString();
-                        GrandeLabel.Text = Lista.Count(x => x.Width == ContadorEmbutidos.Width.Grande).ToString();
-                        TotalLabel.Text = (PequenoLabel.Text.ToInt() + MedianosLabel.Text.ToInt() + GrandeLabel.Text.ToInt()).ToString();
-                        AsignarEmbutido();
+                        AsignarEmbutido(true);
                     }
+                    PequenoLabel.Text = Lista.Count(x => x.Width == Enums.Width.Pequeno && x.Tipo == Tipo.Servible).ToString();
+                    MedianosLabel.Text = Lista.Count(x => x.Width == Enums.Width.Mediano && x.Tipo == Tipo.Servible).ToString();
+                    GrandeLabel.Text = Lista.Count(x => x.Width == Enums.Width.Grande && x.Tipo == Tipo.Servible).ToString();
+                    EmbutidosDanadosLabel.Text = Lista.Count(x => x.Tipo == Tipo.NoServible).ToString();
+                    TotalLabel.Text = (PequenoLabel.Text.ToInt() + MedianosLabel.Text.ToInt() + GrandeLabel.Text.ToInt() + EmbutidosDanadosLabel.Text.ToInt()).ToString();
                 }
             }
             catch (Exception) { }
         }
     }
-    public enum Longitud
-    {
-        Pequeno = 1,
-        Mediano = 2,
-        Grande = 3
-    }
-    public enum Width
-    {
-        Pequeno = 100,
-        Mediano = 200,
-        Grande = 300
-    }
-    public enum Precio
-    {
-        Pequeno = 100,
-        Mediano = 200,
-        Grande = 300
-    }
-    public enum LongitudTiempo
-    {
-        Pequeno = 2,
-        Mediano = 4,
-        Grande = 7
-    }
-    public class Embutidos
-    {
-        public Longitud Longitud { get; set; }
-        public Width Width { get; set; }
-        public Precio Precio { get; set; }
-        public LongitudTiempo LongitudTiempo { get; set; }
-        public Embutidos()
-        {
-            Longitud = Longitud.Pequeno;
-            Width = Width.Pequeno;
-            Precio = Precio.Pequeno;
-            LongitudTiempo = LongitudTiempo.Pequeno;
-        }
-        public Embutidos(Longitud longitud, Width width, Precio precio, LongitudTiempo longitudTiempo)
-        {
-            Longitud = longitud;
-            Width = width;
-            Precio = precio;
-            LongitudTiempo = longitudTiempo;
-        }
-        public void AsignarWidth()
-        {
-            if (Longitud == Longitud.Pequeno)
-                Width = Width.Pequeno;
-            else if (Longitud == Longitud.Mediano)
-                Width = Width.Mediano;
-            else if (Longitud == Longitud.Grande)
-                Width = Width.Grande;
-        }
-        public void AsignarTiempo()
-        {
-            if (Longitud == Longitud.Pequeno)
-                LongitudTiempo = LongitudTiempo.Pequeno;
-            else if (Longitud == Longitud.Mediano)
-                LongitudTiempo = LongitudTiempo.Mediano;
-            else if (Longitud == Longitud.Grande)
-                LongitudTiempo = LongitudTiempo.Grande;
-        }
-    }
+
 }

@@ -74,6 +74,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Embutidos.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +140,24 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\potencia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\potencia%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\potencia%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\poder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\poder%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajustes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

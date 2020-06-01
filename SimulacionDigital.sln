@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parqueos", "Parqueos\Parque
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContadorEmbutidos", "ContadorEmbutidos\ContadorEmbutidos.csproj", "{D34057CB-B0D5-44E2-8BFD-698B79DAEBE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elevador", "Elevador\Elevador.csproj", "{8218A25D-461F-4422-82ED-A5311E2DCD7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D34057CB-B0D5-44E2-8BFD-698B79DAEBE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D34057CB-B0D5-44E2-8BFD-698B79DAEBE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D34057CB-B0D5-44E2-8BFD-698B79DAEBE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8218A25D-461F-4422-82ED-A5311E2DCD7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8218A25D-461F-4422-82ED-A5311E2DCD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8218A25D-461F-4422-82ED-A5311E2DCD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8218A25D-461F-4422-82ED-A5311E2DCD7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
